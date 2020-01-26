@@ -35,6 +35,8 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 
+from Model import getCars
+
 
 # configuration
 DEBUG = True
@@ -56,8 +58,12 @@ def ping_pong():
 @app.route('/getRecommendation', methods=['POST'])
 def getRecommendation():
     # req = request.args
+    # req = request.json
+    # res = getCars("T2")
     req = request.json
-    return jsonify(req)
+    res = getCars(req["id"])
+
+    return jsonify(res)
 
 
 
